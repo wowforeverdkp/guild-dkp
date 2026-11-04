@@ -5,17 +5,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Guild DKP</title>
   <style>
-    /* Layout mínimo e funcional. A identidade visual vem depois. */
-    body { font-family: system-ui, Arial, sans-serif; margin: 0; padding: 16px; max-width: 1100px; margin-inline: auto; color: #222; background: #fff; }
+    /* Layout simples e funcional. A identidade visual vem depois. */
+    * { box-sizing: border-box; }
+    body { font-family: system-ui, Arial, sans-serif; margin: 0; color: #222; background: #fff; }
+    .layout { display: flex; min-height: 100vh; }
+    aside { width: 230px; flex-shrink: 0; background: #f4f4f4; border-right: 1px solid #ddd; padding: 16px 0; position: sticky; top: 0; height: 100vh; overflow-y: auto; }
+    aside .brand { padding: 0 16px 12px; font-weight: 700; font-size: 1.05rem; }
+    aside .group { padding: 14px 16px 4px; font-size: .75rem; text-transform: uppercase; letter-spacing: .05em; color: #777; }
+    aside a { display: block; padding: 7px 16px; color: #222; text-decoration: none; font-size: .95rem; border-left: 3px solid transparent; }
+    aside a:hover { background: #e9e9e9; }
+    aside a.active { background: #fff; border-left-color: #222; font-weight: 600; }
+    aside .foot { padding: 16px; font-size: .8rem; color: #666; }
+    main { flex: 1; min-width: 0; padding: 20px 28px 48px; max-width: 1000px; }
     h1 { margin: 0 0 4px; font-size: 1.5rem; }
     h2 { font-size: 1.15rem; margin: 28px 0 8px; }
+    h3 { font-size: 1rem; margin: 20px 0 6px; }
+    p, li { line-height: 1.5; }
     .muted { color: #666; font-size: .9rem; }
-    nav { display: flex; gap: 8px; flex-wrap: wrap; margin: 16px 0; }
-    nav button, .btn { padding: 6px 12px; border: 1px solid #999; background: #f4f4f4; cursor: pointer; border-radius: 4px; font: inherit; }
-    nav button.active { background: #222; color: #fff; border-color: #222; }
+    .btn { padding: 5px 10px; border: 1px solid #999; background: #f4f4f4; cursor: pointer; border-radius: 4px; font: inherit; font-size: .85rem; }
     .bar { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; margin: 8px 0; }
     .bar input, .bar select { padding: 5px 8px; font: inherit; }
-    .stats { display: flex; gap: 24px; flex-wrap: wrap; margin: 8px 0; }
+    .stats { display: flex; gap: 24px; flex-wrap: wrap; margin: 12px 0; }
     .stats div b { display: block; font-size: 1.2rem; }
     .scroll { overflow-x: auto; }
     table { border-collapse: collapse; width: 100%; font-size: .92rem; }
@@ -27,46 +37,32 @@
     .pos { color: #1a7f37; } .neg { color: #c0392b; }
     .warn { background: #fff6dd; border: 1px solid #e6c463; padding: 8px 12px; margin: 12px 0; border-radius: 4px; font-size: .9rem; }
     .warn ul { margin: 4px 0 0 18px; padding: 0; }
+    .box { border: 1px solid #ddd; border-radius: 6px; padding: 12px 16px; margin: 12px 0; background: #fafafa; }
+    .why { border-left: 3px solid #999; padding: 4px 12px; margin: 8px 0; color: #444; }
     details { margin: 6px 0; } summary { cursor: pointer; }
-    .rules li { margin: 3px 0; }
+    .menu-toggle { display: none; }
+    @media (max-width: 760px) {
+      .layout { flex-direction: column; }
+      aside { width: 100%; height: auto; position: static; border-right: 0; border-bottom: 1px solid #ddd; padding: 10px 0; }
+      aside nav { display: none; } aside.open nav { display: block; }
+      .menu-toggle { display: inline-block; margin: 0 16px; }
+      main { padding: 16px; }
+    }
   </style>
 </head>
 <body>
-  <header>
-    <h1 id="title">Guild DKP</h1>
-    <div class="muted" id="status">Carregando dados...</div>
-  </header>
-
-  <nav id="raidTabs"></nav>
-  <div id="warnings"></div>
-
-  <main id="app" hidden>
-    <section>
-      <div class="stats" id="stats"></div>
-      <h2>Saldos</h2>
-      <div class="bar">
-        <label>Função <select id="roleFilter"><option value="">Todas</option><option>Tank</option><option>Healer</option><option>DPS</option></select></label>
-        <label>Buscar <input id="search" placeholder="nome do personagem"></label>
-        <span class="muted">Prioridade de loot: Main spec &gt; Offspec. Tank &gt; Healer = DPS. Dentro do grupo, maior saldo. Empate: roll.</span>
-      </div>
-      <div class="scroll"><table id="ranking"></table></div>
-    </section>
-
-    <section id="playerSection" hidden>
-      <h2 id="playerTitle"></h2>
-      <div class="scroll"><table id="playerLedger"></table></div>
-    </section>
-
-    <section>
-      <h2>Runs</h2>
-      <div id="runs"></div>
-    </section>
-
-    <section>
-      <h2>Regras e preços desta raid</h2>
-      <div id="rules"></div>
-    </section>
-  </main>
+  <div class="layout">
+    <aside id="sidebar">
+      <div class="brand" id="brand">Guild DKP</div>
+      <button class="btn menu-toggle" id="menuToggle">Menu</button>
+      <nav id="nav"></nav>
+      <div class="foot" id="status">Carregando dados...</div>
+    </aside>
+    <main>
+      <div id="warnings"></div>
+      <div id="view"></div>
+    </main>
+  </div>
 
   <script src="config.js"></script>
   <script src="engine.js"></script>
