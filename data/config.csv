@@ -1,0 +1,8 @@
+chave,valor,descricao
+founder_start,100,Saldo inicial de quem faz a primeira run da guild naquela raid (escala de 10)
+bench_pct,0.30,Fracao da cota que o banco pronto recebe
+ontime_bonus,5,Bonus de pontualidade (escala de 10)
+noshow_penalty,10,Penalidade do primeiro no-show sem aviso no mes (escala de 10)
+noshow_repeat_penalty,20,Penalidade do segundo no-show em diante no mesmo mes (escala de 10)
+decay_pct,0.10,Decay mensal aplicado em todos os saldos
+decay_day,1,Dia do mes em que o decay e aplicado

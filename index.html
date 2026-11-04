@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Guild DKP</title>
+  <style>
+    /* Layout mínimo e funcional. A identidade visual vem depois. */
+    body { font-family: system-ui, Arial, sans-serif; margin: 0; padding: 16px; max-width: 1100px; margin-inline: auto; color: #222; background: #fff; }
+    h1 { margin: 0 0 4px; font-size: 1.5rem; }
+    h2 { font-size: 1.15rem; margin: 28px 0 8px; }
+    .muted { color: #666; font-size: .9rem; }
+    nav { display: flex; gap: 8px; flex-wrap: wrap; margin: 16px 0; }
+    nav button, .btn { padding: 6px 12px; border: 1px solid #999; background: #f4f4f4; cursor: pointer; border-radius: 4px; font: inherit; }
+    nav button.active { background: #222; color: #fff; border-color: #222; }
+    .bar { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; margin: 8px 0; }
+    .bar input, .bar select { padding: 5px 8px; font: inherit; }
+    .stats { display: flex; gap: 24px; flex-wrap: wrap; margin: 8px 0; }
+    .stats div b { display: block; font-size: 1.2rem; }
+    .scroll { overflow-x: auto; }
+    table { border-collapse: collapse; width: 100%; font-size: .92rem; }
+    th, td { text-align: left; padding: 6px 8px; border-bottom: 1px solid #e3e3e3; white-space: nowrap; }
+    th { background: #f4f4f4; }
+    td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+    tr.click { cursor: pointer; }
+    tr.click:hover td { background: #f7f7f7; }
+    .pos { color: #1a7f37; } .neg { color: #c0392b; }
+    .warn { background: #fff6dd; border: 1px solid #e6c463; padding: 8px 12px; margin: 12px 0; border-radius: 4px; font-size: .9rem; }
+    .warn ul { margin: 4px 0 0 18px; padding: 0; }
+    details { margin: 6px 0; } summary { cursor: pointer; }
+    .rules li { margin: 3px 0; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1 id="title">Guild DKP</h1>
+    <div class="muted" id="status">Carregando dados...</div>
+  </header>
+
+  <nav id="raidTabs"></nav>
+  <div id="warnings"></div>
+
+  <main id="app" hidden>
+    <section>
+      <div class="stats" id="stats"></div>
+      <h2>Saldos</h2>
+      <div class="bar">
+        <label>Função <select id="roleFilter"><option value="">Todas</option><option>Tank</option><option>Healer</option><option>DPS</option></select></label>
+        <label>Buscar <input id="search" placeholder="nome do personagem"></label>
+        <span class="muted">Prioridade de loot: Main spec &gt; Offspec. Tank &gt; Healer = DPS. Dentro do grupo, maior saldo. Empate: roll.</span>
+      </div>
+      <div class="scroll"><table id="ranking"></table></div>
+    </section>
+
+    <section id="playerSection" hidden>
+      <h2 id="playerTitle"></h2>
+      <div class="scroll"><table id="playerLedger"></table></div>
+    </section>
+
+    <section>
+      <h2>Runs</h2>
+      <div id="runs"></div>
+    </section>
+
+    <section>
+      <h2>Regras e preços desta raid</h2>
+      <div id="rules"></div>
+    </section>
+  </main>
+
+  <script src="config.js"></script>
+  <script src="engine.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

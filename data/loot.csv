@@ -1,0 +1,19 @@
+run_id,personagem,item,tipo,spec
+BD-01,Gorrik Stonefist,Exemplo: Machado de duas maos,ARMA2M,MS
+BD-01,Kaelith Starfall,Exemplo: Trinket arcano,TRINKET,MS
+BD-01,Thorgrim Ironbrew,Exemplo: Peitoral de placas,PEITO,MS
+BD-01,Aelara Dawnsong,Exemplo: Robe sagrado,PEITO,MS
+BD-01,Durnan Swiftshot,Exemplo: Botas de couro,PES,MS
+BD-01,Lyssia Shadeveil,Exemplo: Botas furtivas,PES,MS
+BD-01,Morwen Ashgrave,Exemplo: Anel sombrio,ANEL,MS
+BD-01,Tilda Stormcall,Exemplo: Colar das mares,COLAR,MS
+BD-01,Fenric Moonbough,Exemplo: Anel do bosque,ANEL,MS
+BD-01,Brannos Lightward,Exemplo: Capa da luz,CAPA,MS
+BD-01,Lyssia Shadeveil,Exemplo: Anel veloz,ANEL,MS
+BD-01,Durnan Swiftshot,Exemplo: Anel (offspec),ANEL,OS
+BD-02,Thorgrim Ironbrew,Exemplo: Espada de uma mao,ARMA1M,MS
+BD-02,Fenric Moonbough,Exemplo: Ombreiras,OMBRO,MS
+BD-02,Aelara Dawnsong,Exemplo: Luvas,MAOS,MS
+BD-02,Lyssia Shadeveil,Exemplo: Trinket de agilidade,TRINKET,MS
+BD-03,Gorrik Stonefist,Exemplo: Arma de duas maos,ARMA2M,MS
+BD-03,Ilyra Brightleaf,Exemplo: Cajado,ARMA2M,MS
